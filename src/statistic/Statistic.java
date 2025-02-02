@@ -1,25 +1,22 @@
 package statistic;
 
-import entity.creature.Creature;
 import entity.creature.animal.Animal;
 import entity.creature.animal.herbivore.Rabbit;
 import entity.creature.animal.predator.*;
-import entity.creature.plant.Plant;
 import generating.Generating;
-
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 public class Statistic {
-    public static long numberOfWolves = Generating.getAnimals().stream().filter(a -> a instanceof Wolf).count();
-    static long numberOfSnake = Generating.getAnimals().stream().filter(a -> a instanceof Snake).count();
-    static long numberOfRabbit = Generating.getAnimals().stream().filter(a -> a instanceof Rabbit).count();
 
-    static long numberOfPlants = Generating.getPlants().stream().filter(Objects::nonNull).count();
     public static void printStat() {
+        long numberOfWolfs = Generating.getAnimals().stream().filter(a -> a instanceof Wolf).count();
+        long numberOfSnake = Generating.getAnimals().stream().filter(a -> a instanceof Snake).count();
+        long numberOfRabbit = Generating.getAnimals().stream().filter(a -> a instanceof Rabbit).count();
+
+        long numberOfPlants = Generating.getPlants().stream().filter(Objects::nonNull).count();
         System.out.println("\u001B[31m" + "Predatory animals:" + "\u001B[0m");
-        System.out.println("Wolfs -> " + numberOfWolves);
+        System.out.println("Wolfs -> " + numberOfWolfs);
         System.out.println("Snakes -> " + numberOfSnake);
 
         System.out.println("\u001B[31m" + "Herbivores:" + "\u001B[0m");
@@ -35,17 +32,19 @@ public class Statistic {
                 .count();
     }
 
-    static long countOfWolfs = countOfAnimals(Generating.getAnimals(), new Wolf());
-    static long countOfSnakes = countOfAnimals(Generating.getAnimals(), new Snake());
-    static long countOfRabbit = countOfAnimals(Generating.getAnimals(), new Rabbit());
+
     public static void printCountOfAnimals() {
+        long countOfWolfs = countOfAnimals(Generating.getAnimals(), new Wolf());
+        long countOfSnakes = countOfAnimals(Generating.getAnimals(), new Snake());
+        long countOfRabbit = countOfAnimals(Generating.getAnimals(), new Rabbit());
+
         System.out.println("countOfWolfs -> " + countOfWolfs);
         System.out.println("countOfSnakes -> " + countOfSnakes);
         System.out.println("countOfRabbit -> " + countOfRabbit);
     }
 
     public static void printCountOfPlants() {
-        long count = Generating.getPlants().stream().count();
+        long count = Generating.getPlants().size();
         System.out.println("countOfPlants -> " + count);
     }
 

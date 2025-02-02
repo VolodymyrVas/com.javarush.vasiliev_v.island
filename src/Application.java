@@ -37,5 +37,8 @@ public class Application {
         System.out.println("#".repeat(77));
         Location.printArray();
         Location.printWolfsOnCell();
+        Location.printArray();
+
+
     }
 }
