@@ -1,7 +1,9 @@
+package settings;
+
 public class Settings {
   // НАСТОРОЙКИ РАЗМЕРА ОСТРОВА (КОЛ-ВО ЛОКАЦИЙ)
-  public final static int columnsCount = 100;
-  public final static int rowsCount = 1000;
+  public final static int columnsCount = 1;
+  public final static int rowsCount = 1;
   // Характеристики животных:
   public final static int wolfWeight = 50;
   public final static int wolfMaxNumber = 30;

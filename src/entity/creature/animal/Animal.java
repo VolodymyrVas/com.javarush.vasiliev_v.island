@@ -4,10 +4,16 @@ import entity.creature.Creature;
 
 public abstract class Animal extends Creature {
 
+
+
     // ОБЩИЕ ХАРАКТЕРИСТИКИ
-    // СЫТОСТЬ satiety = ? вес
+    // СЫТОСТЬ satiety(сытость) = ? вес
     // ВЕС ЖИВОТНОГО
+    protected int weight;
     // СКОРОСТЬ ПЕРЕМЕЩЕНИЯ
+    protected int speed;
+    protected int saturation;
+
     void eat(Creature c) {
 
         // ДЕФОЛТНАЯ РЕАЛИЗАЦИЯ
@@ -29,6 +35,7 @@ public abstract class Animal extends Creature {
         // ДЕФОЛТНАЯ РЕАЛИЗАЦИЯ
     }
 
-    void decreaseWeight(){
-    }
+//    void decreaseWeight(){
+//    }
+
 }
