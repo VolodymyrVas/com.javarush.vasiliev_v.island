@@ -2,8 +2,8 @@ package settings;
 
 public class Settings {
   // НАСТОРОЙКИ РАЗМЕРА ОСТРОВА (КОЛ-ВО ЛОКАЦИЙ)
-  public final static int columnsCount = 1;
-  public final static int rowsCount = 1;
+  public final static int columnsCount = 4;
+  public final static int rowsCount = 4;
   // Характеристики животных:
   public final static int wolfWeight = 50;
   public final static int wolfMaxNumber = 30;
@@ -80,7 +80,7 @@ public class Settings {
   public final static int caterpillarSpeed = 0;
   public final static int caterpillarSaturation = 0;
 
-  // Растения
+  // Характеристики растения:
   public final static double plantWeight = 1;
   public final static int plantMaxNumber = 200;
 }

@@ -1,9 +1,11 @@
 package entity.creature.animal;
 
+import entity.Location;
 import entity.creature.Creature;
 
-public abstract class Animal extends Creature {
+import static entity.Location.*;
 
+public abstract class Animal extends Creature {
 
 
     // ОБЩИЕ ХАРАКТЕРИСТИКИ
@@ -31,8 +33,9 @@ public abstract class Animal extends Creature {
         return null;
     }
 
-    void die() {
-        // ДЕФОЛТНАЯ РЕАЛИЗАЦИЯ
+    // ✅ Удаление животного (например, если его съели)
+    public boolean die(Animal animal) {
+        return Location.getAnimalsOnCell().remove(animal);
     }
 
 //    void decreaseWeight(){
