@@ -1,6 +1,7 @@
 package generating;
 
 import entity.Location;
+import entity.creature.animal.Animal;
 import entity.creature.animal.herbivore.Rabbit;
 import entity.creature.animal.predator.Snake;
 import entity.creature.animal.predator.Wolf;
@@ -26,8 +27,9 @@ public class Generating implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("run proces");
+        Statistic.printStat();
         System.out.println("#".repeat(77));
+
 
     }
 }

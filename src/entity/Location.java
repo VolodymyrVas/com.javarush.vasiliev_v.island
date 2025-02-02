@@ -33,4 +33,8 @@ public class Location {
         }
         return false; // Лимит достигнут
     }
+
+    public void removeAnimal(Animal animal) {
+        Location.animalsOnCell.remove(animal);
+    }
 }

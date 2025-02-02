@@ -27,8 +27,7 @@ public class Application {
 
 
 //      ВЫВОД В КОНСОЛЬ ПЕРВЫХ ПОСИЛЕНЦЕВ
-        Statistic.printStat();
-//
+
         System.out.println("#".repeat(77));
 
     }
