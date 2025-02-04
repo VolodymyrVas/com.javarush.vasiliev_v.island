@@ -26,26 +26,4 @@ public class Statistic {
         System.out.println("\u001B[31m" + "Vegetation:" + "\u001B[0m");
         System.out.println("Plants -> " + numberOfPlants);
     }
-
-//    public static long countOfAnimals(List<Animal> a, Animal animal) {
-//        return a.stream()
-//                .filter(x -> x.getClass().equals(animal.getClass())) // Сравниваем классы
-//                .count();
-//    }
-
-
-//    public static void printCountOfAnimals() {
-//        long countOfWolfs = countOfAnimals(Location.getAnimalsOnCell(), new Wolf());
-//        long countOfSnakes = countOfAnimals(Location.getAnimalsOnCell(), new Snake());
-//        long countOfRabbit = countOfAnimals(Location.getAnimalsOnCell(), new Rabbit());
-//
-//        System.out.println("countOfWolfs -> " + countOfWolfs);
-//        System.out.println("countOfSnakes -> " + countOfSnakes);
-//        System.out.println("countOfRabbit -> " + countOfRabbit);
-//    }
-
-//    public static void printCountOfPlants() {
-//        long count = Location.getPlantsOnCell().size();
-//        System.out.println("countOfPlants -> " + count);
-//    }
 }

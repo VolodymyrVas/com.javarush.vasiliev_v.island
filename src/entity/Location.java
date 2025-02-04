@@ -8,8 +8,19 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Location {
+    private final int x;
+    private final int y;
+
     private static final List<Animal> animalsOnCell = new CopyOnWriteArrayList<>();
     private static final List<Plant> plantsOnCell = new CopyOnWriteArrayList<>();
+
+    public Location(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() { return x; }
+    public int getY() { return y; }
 
     public static List<Animal> getAnimalsOnCell() {
         return animalsOnCell;
@@ -19,22 +30,33 @@ public class Location {
         return plantsOnCell;
     }
 
-    // ✅ Метод для подсчёта животных определённого типа
+    // Метод для подсчёта животных определённого типа
     public long getAnimalCount(Class<? extends Animal> type) {
         return animalsOnCell.stream().filter(type::isInstance).count();
     }
 
-    // ✅ Метод для добавления животных с лимитом
+    // Метод для добавления животных с лимитом
     public boolean addAnimal(Animal animal) {
-        int maxLimit = Settings.wolfMaxNumber; // ❗ Пример, надо сделать универсально
-        if (getAnimalCount(animal.getClass()) < maxLimit) {
-            animalsOnCell.add(animal);
-            return true;
-        }
-        return false; // Лимит достигнут
+        animalsOnCell.add(animal);
+        return true;
     }
 
     public void removeAnimal(Animal animal) {
         Location.animalsOnCell.remove(animal);
+    }
+
+    // Метод для подсчёта растений
+    public long getPlantCount(Plant plant) {
+        return plantsOnCell.stream().count();
+    }
+
+    // Метод для добавления растений с лимитом
+    public boolean addPlant(Plant plant) {
+        plantsOnCell.add(plant);
+        return true;
+    }
+
+    public void removePlant(Plant plant) {
+        Location.plantsOnCell.remove(plant);
     }
 }

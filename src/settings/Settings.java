@@ -99,24 +99,24 @@ public class Settings {
   static {
     Map<Class<? extends Creature>, Integer> wolfDiet = new HashMap<>();
     wolfDiet.put(Rabbit.class, 60);
-    wolfDiet.put(Mouse.class, 80);
+//    wolfDiet.put(Mouse.class, 80);
     wolfDiet.put(Horse.class, 10);
     wolfDiet.put(Deer.class, 15);
     wolfDiet.put(Goat.class, 60);
     wolfDiet.put(Sheep.class, 70);
-    wolfDiet.put(Boar.class, 15);
-    wolfDiet.put(Buffalo.class, 10);
+//    wolfDiet.put(Boar.class, 15);
+//    wolfDiet.put(Buffalo.class, 10);
     wolfDiet.put(Duck.class, 40);
 
     Map<Class<? extends Creature>, Integer> snakeDiet = new HashMap<>();
     snakeDiet.put(Fox.class, 15);
     snakeDiet.put(Rabbit.class, 20);
-    snakeDiet.put(Mouse.class, 40);
+//    snakeDiet.put(Mouse.class, 40);
     snakeDiet.put(Duck.class, 10);
 
     Map<Class<? extends Creature>, Integer> foxDiet = new HashMap<>();
     foxDiet.put(Rabbit.class, 70);
-    foxDiet.put(Mouse.class, 90);
+//    foxDiet.put(Mouse.class, 90);
     foxDiet.put(Duck.class, 60);
     foxDiet.put(Caterpillar.class, 40);
 
@@ -125,17 +125,17 @@ public class Settings {
     bearDiet.put(Horse.class, 40);
     bearDiet.put(Deer.class, 80);
     bearDiet.put(Rabbit.class, 80);
-    bearDiet.put(Mouse.class, 90);
+//    bearDiet.put(Mouse.class, 90);
     bearDiet.put(Goat.class, 70);
     bearDiet.put(Sheep.class, 70);
-    bearDiet.put(Boar.class, 50);
-    bearDiet.put(Buffalo.class, 20);
+//    bearDiet.put(Boar.class, 50);
+//    bearDiet.put(Buffalo.class, 20);
     bearDiet.put(Duck.class, 10);
 
     Map<Class<? extends Creature>, Integer> eagleDiet = new HashMap<>();
     eagleDiet.put(Fox.class, 10);
     eagleDiet.put(Rabbit.class, 90);
-    eagleDiet.put(Mouse.class, 90);
+//    eagleDiet.put(Mouse.class, 90);
     eagleDiet.put(Duck.class, 80);
 
     // ✅ Добавляем всех хищников в общую таблицу

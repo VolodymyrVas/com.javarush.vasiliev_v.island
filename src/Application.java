@@ -1,34 +1,29 @@
+import entity.AnimalLifeCycle;
+import entity.AnimalMover;
 import entity.Island;
-import entity.Location;
 import generating.Generating;
 import settings.Settings;
-import statistic.Statistic;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-
 public class Application {
     public static void main(String[] args) {
-        // ТОЧКА СБОРКИ И СТАРТА МОЕГО ПРИЛОЖЕНИЯ
-
-        Island island = new Island(Settings.columnsCount, Settings.rowsCount);
-        System.out.print("Создан мир размером: ");
-        int y = Settings.columnsCount;
-        int x = Settings.rowsCount;
-        System.out.println("columnsCount -> " + y + " rowsCount -> " + x);
+        Island island = new Island();
+        System.out.println("Создан мир размером: columnsCount -> " + Settings.columnsCount +
+                                   " rowsCount -> " + Settings.rowsCount);
         System.out.println("#".repeat(77));
 
-//      ГЕНЕРИРУЕМ ФЛОРУ И ФАУНУ
-        Generating.generateBiot();
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
-        executorService.scheduleAtFixedRate(new Generating(), 0, 5, TimeUnit.SECONDS);
+        Generating generating = new Generating(island);
+        generating.generateBiot();
 
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(4);
 
-//      ВЫВОД В КОНСОЛЬ ПЕРВЫХ ПОСИЛЕНЦЕВ
+        executorService.scheduleAtFixedRate(new Generating(island), 0, 5, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(new AnimalMover(island), 0, 3, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(new AnimalLifeCycle(island), 0, 6, TimeUnit.SECONDS);
 
         System.out.println("#".repeat(77));
-
     }
 }

@@ -1,9 +1,12 @@
 package entity.creature.animal;
 
+import entity.Island;
 import entity.Location;
 import entity.creature.Creature;
 import entity.creature.plant.Plant;
 import settings.Settings;
+import util.Direction;
+
 import java.util.Random;
 
 public abstract class Animal extends Creature {
@@ -13,35 +16,51 @@ public abstract class Animal extends Creature {
     protected int saturation;  // Сытость (если 0 → смерть)
     protected int maxSaturation; // Максимальная сытость
 
+    public int getSaturation() {
+        return saturation;
+    }
+    public int getSpeed() {
+        return speed;
+    }
+
     private static final Random random = new Random();
 
     // ✅ Метод передвижения
-    public void move(Location currentLocation, Location[][] island) {
-        int x = random.nextInt(-speed, speed + 1);
-        int y = random.nextInt(-speed, speed + 1);
+    public void move(Island island, Location currentLocation) {
+        Direction direction = Direction.values()[random.nextInt(Direction.values().length)]; // Случайное направление
 
-        int newX = Math.max(0, Math.min(Settings.columnsCount - 1, x));
-        int newY = Math.max(0, Math.min(Settings.rowsCount - 1, y));
+        int newX = currentLocation.getX();
+        int newY = currentLocation.getY();
 
-        Location newLocation = island[newX][newY];
+        // Определяем новую координату в зависимости от направления
+        switch (direction) {
+            case UP -> newY -= speed;
+            case DOWN -> newY += speed;
+            case LEFT -> newX -= speed;
+            case RIGHT -> newX += speed;
+        }
 
-        if (newLocation.addAnimal(this)) {
-            currentLocation.removeAnimal(this);
+        // Проверяем, чтобы животное не вышло за границы острова
+        if (newX < 0 || newX >= Settings.columnsCount || newY < 0 || newY >= Settings.rowsCount) {
+            return; // Если выходит за границы — не двигаемся
+        }
+
+        Location newLocation = island.getLocation(newX, newY); // Получаем новую локацию
+
+        if (newLocation.addAnimal(this)) { // Добавляем в новую клетку
+            currentLocation.removeAnimal(this); // Удаляем из старой
         }
     }
 
-    // ✅ Метод поедания (травоядные → растения, хищники → животные)
-//    public void eat(Creature food) {
-//        if (food instanceof Plant) {
-//            saturation = Math.min(maxSaturation, saturation + 10); // Например, растение восстанавливает 10
-//        } else if (food instanceof Animal prey) {
-//            int chance = Settings.getEatingChance(this.getClass(), prey.getClass());
-//            if (random.nextInt(100) < chance) {
-//                saturation = Math.min(maxSaturation, saturation + prey.weight);
-//                prey.die();
-//            }
-//        }
-//    }
+    //     ✅ Метод поедания (травоядные → растения, хищники → животные)
+    public void eat(Creature food) {
+        int chance = Settings.getEatingChance(this.getClass(), food.getClass()); // Используем food
+        if (random.nextInt(100) < chance) {
+            saturation = Math.min(maxSaturation, saturation + ((Animal) food).weight); // Приведение к Animal
+            ((Animal) food).die();
+        }
+    }
+
 
     // ✅ Размножение (если есть пара)
     public Animal reproduce(Location location) {
