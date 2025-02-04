@@ -27,12 +27,12 @@ public class AnimalEater implements Runnable {
                 }
             }
 
-            for (Plant plant : Location.getPlantsOnCell()) {
-                if (predator.eat(plant)) {
-                    location.getPlantsOnCell().remove(plant);
-                    break; // Одного съели, больше не нужно
-                }
-            }
+//            for (Plant plant : Location.getPlantsOnCell()) {
+//                if (predator.eat(plant)) {
+//                    location.getPlantsOnCell().remove(plant);
+//                    break; // Одного съели, больше не нужно
+//                }
+//            }
         }
     }
 
