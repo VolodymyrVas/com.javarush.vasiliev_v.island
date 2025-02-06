@@ -23,6 +23,10 @@ public abstract class Animal extends Creature {
         return speed;
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
     private static final Random random = new Random();
 
     // ✅ Метод передвижения
@@ -62,7 +66,7 @@ public abstract class Animal extends Creature {
     }
 
 
-    // ✅ Размножение (если есть пара)
+    // Размножение (если есть пара)
     public Animal reproduce(Location location) {
         long count = location.getAnimalCount(this.getClass());
         if (count >= 2) {
@@ -87,4 +91,9 @@ public abstract class Animal extends Creature {
     public void die() {
         System.out.println(this.getClass().getSimpleName() + " умер от голода или был съеден.");
     }
+
+    public void increaseSaturation(int amount) {
+        this.saturation = Math.min(this.saturation + amount, this.maxSaturation);
+    }
+
 }

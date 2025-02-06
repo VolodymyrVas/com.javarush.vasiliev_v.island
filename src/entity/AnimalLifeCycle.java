@@ -19,7 +19,7 @@ public class AnimalLifeCycle implements Runnable {
         for (int x = 0; x < Settings.columnsCount; x++) {
             for (int y = 0; y < Settings.rowsCount; y++) {
                 Location location = island.getLocation(x, y);
-                Iterator<Animal> iterator = Location.getAnimalsOnCell().iterator();
+                Iterator<Animal> iterator = location.getAnimals().iterator();
                 while (iterator.hasNext()) {
                     Animal animal = iterator.next();
                     animal.decreaseSaturation();

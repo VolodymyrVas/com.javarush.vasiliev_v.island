@@ -4,6 +4,7 @@ import entity.creature.animal.Animal;
 import entity.creature.plant.Plant;
 import settings.Settings;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -22,11 +23,12 @@ public class Location {
     public int getX() { return x; }
     public int getY() { return y; }
 
-    public static List<Animal> getAnimalsOnCell() {
-        return animalsOnCell;
+    public List<Animal> getAnimals() {
+        return new ArrayList<>(animalsOnCell);
     }
 
-    public static List<Plant> getPlantsOnCell() {
+
+    public List<Plant> getPlants() {
         return plantsOnCell;
     }
 

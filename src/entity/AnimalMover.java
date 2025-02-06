@@ -20,7 +20,7 @@ public class AnimalMover implements Runnable {
         for (int x = 0; x < Settings.columnsCount; x++) {
             for (int y = 0; y < Settings.rowsCount; y++) {
                 Location location = island.getLocation(x, y);
-                for (Animal animal : Location.getAnimalsOnCell()) {
+                for (Animal animal : location.getAnimals()) {
                     moveAnimal(animal, location);
                 }
             }
