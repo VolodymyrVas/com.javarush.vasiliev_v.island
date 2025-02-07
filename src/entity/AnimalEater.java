@@ -47,7 +47,7 @@ public class AnimalEater implements Runnable { // ✅ Теперь `Runnable`
                 if (random.nextInt(100) < chance) {
                     predator.increaseSaturation(prey.getWeight());
                     location.removeAnimal(prey);
-                    System.out.println(predator.getClass().getSimpleName() + " съел " + prey.getClass().getSimpleName() + " в клетке [" + location + "]");
+//                    System.out.println(predator.getClass().getSimpleName() + " съел " + prey.getClass().getSimpleName() + " в клетке [" + location + "]");
                     break; // Один хищник ест одну жертву за такт
                 }
             }
@@ -58,7 +58,7 @@ public class AnimalEater implements Runnable { // ✅ Теперь `Runnable`
         if (!plants.isEmpty()) {
             herbivore.increaseSaturation(5);
             plants.remove(0);
-            System.out.println(herbivore.getClass().getSimpleName() + " съел растение в клетке");
+//            System.out.println(herbivore.getClass().getSimpleName() + " съел растение в клетке");
         }
     }
 }

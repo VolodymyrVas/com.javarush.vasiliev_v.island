@@ -4,7 +4,7 @@ import settings.Settings;
 
 public class Boar extends Herbivore{
     public Boar() {
-        super(Settings.buffaloWeight, Settings.boarSpeed, Settings.boarSaturation);
+        super(Settings.boarWeight, Settings.boarSpeed, Settings.boarSaturation);
     }
 
     @Override

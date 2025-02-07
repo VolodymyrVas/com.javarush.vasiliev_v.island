@@ -17,7 +17,7 @@ public abstract class Animal {
     }
 
     public void decreaseSaturation() {
-        this.saturation -= 1; // Животное постепенно теряет сытость
+        this.saturation -= 10; // Животное постепенно теряет сытость
     }
 
     public boolean isHungry() {

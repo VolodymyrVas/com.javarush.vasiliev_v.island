@@ -20,7 +20,7 @@ public class Generating implements Runnable {
         this.statistic = new Statistic(island);
     }
 
-    public void generateBiot() {
+    public void generateAnimals() {
         for (int i = 0; i < random.nextInt(Settings.wolfMaxNumber) + 1; i++) {
             getRandomLocation().addAnimal(new Wolf());
         }
@@ -67,7 +67,9 @@ public class Generating implements Runnable {
         for (int i = 0; i < random.nextInt(Settings.mouseMaxNumber) + 1; i++) {
             getRandomLocation().addAnimal(new Mouse());
         }
+    }
 
+    public void generatePlants() {
         for (int i = 0; i < random.nextInt(Settings.plantMaxNumber) + 1; i++) {
             getRandomLocation().addPlant(new Plant());
         }

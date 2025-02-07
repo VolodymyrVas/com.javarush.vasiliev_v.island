@@ -1,7 +1,4 @@
-import entity.AnimalEater;
-import entity.AnimalLifeCycle;
-import entity.AnimalMover;
-import entity.Island;
+import entity.*;
 import generating.Generating;
 import settings.Settings;
 import statistic.Statistic;
@@ -20,7 +17,8 @@ public class Application {
 
         // Генерация биоты один раз
         Generating generating = new Generating(island);
-        generating.generateBiot();
+        generating.generateAnimals();
+        generating.generatePlants();
         Statistic statistic = new Statistic(island);
         statistic.printStat();// ✅ Первичный вывод статистики
 
@@ -36,7 +34,10 @@ public class Application {
         // 3. Потом передвигаются (каждые 3 сек, задержка 2 сек после еды)
         executorService.scheduleAtFixedRate(new AnimalMover(island), 2, 3, TimeUnit.SECONDS);
 
-        // ✅ 4. Вывод статистики (каждые 7 сек, после всех действий)
+        // 4. Возобновляем флору
+        executorService.scheduleAtFixedRate(new PlantRestore(island), 3, 5, TimeUnit.SECONDS);
+
+        // 5. Вывод статистики (каждые 7 сек, после всех действий)
         executorService.scheduleAtFixedRate(new StatisticsUpdater(island), 3, 7, TimeUnit.SECONDS);
     }
 }
