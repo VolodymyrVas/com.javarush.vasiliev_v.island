@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class Settings {
   // НАСТОРОЙКИ РАЗМЕРА ОСТРОВА (КОЛ-ВО ЛОКАЦИЙ)
-  public final static int columnsCount = 4;
-  public final static int rowsCount = 4;
+  public final static int columnsCount = 2;
+  public final static int rowsCount = 2;
   // Характеристики животных:
   public final static int wolfWeight = 50;
   public final static int wolfMaxNumber = 30;

@@ -87,9 +87,9 @@ public abstract class Animal extends Creature {
         }
     }
 
-    // ✅ Метод смерти (удаляет животное из Location)
+    // Метод смерти (удаляет животное из Location)
     public void die() {
-        System.out.println(this.getClass().getSimpleName() + " умер от голода или был съеден.");
+        this.getClass().getSimpleName();
     }
 
     public void increaseSaturation(int amount) {

@@ -14,6 +14,17 @@ public class Island {
         }
     }
 
+    // Метод для получения ширины острова
+    public int getWidth() {
+        return locations.length;
+    }
+
+    // Метод для получения высоты острова
+    public int getHeight() {
+        return locations[0].length;
+    }
+
+    // Получение конкретной клетки по координатам
     public Location getLocation(int x, int y) {
         return locations[x][y];
     }

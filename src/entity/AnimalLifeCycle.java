@@ -25,7 +25,7 @@ public class AnimalLifeCycle implements Runnable {
                     animal.decreaseSaturation();
                     if (animal.getSaturation() <= 0) {
                         iterator.remove(); // Животное умирает
-                        System.out.println(animal.getClass().getSimpleName() + " умер от голода в клетке [" + x + "," + y + "]");
+//                        System.out.println(animal.getClass().getSimpleName() + " умер от голода в клетке [" + x + "," + y + "]");
                     }
                 }
             }

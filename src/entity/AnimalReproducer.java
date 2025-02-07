@@ -9,13 +9,15 @@ import settings.Settings;
 public class AnimalReproducer implements Runnable {
     private final Island island;
 
+    private Location location;
+
     public AnimalReproducer(Island island) {
         this.island = island;
     }
 
     @Override
     public void run() {
-        for (Animal animal : Location.getAnimalsOnCell()) {
+        for (Animal animal : location.getAnimals()) {
             Location location = findLocation(animal);
             if (location == null) continue;
 
@@ -32,7 +34,7 @@ public class AnimalReproducer implements Runnable {
         for (int x = 0; x < Settings.columnsCount; x++) {
             for (int y = 0; y < Settings.rowsCount; y++) {
                 Location location = island.getLocation(x, y);
-                if (location.getAnimalsOnCell().contains(animal)) {
+                if (location.getAnimals().contains(animal)) {
                     return location;
                 }
             }
