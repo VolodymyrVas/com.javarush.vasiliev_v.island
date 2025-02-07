@@ -1,11 +1,10 @@
 package entity;
 
-import entity.Island;
-import entity.Location;
 import entity.creature.animal.Animal;
 import settings.Settings;
 
-import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AnimalLifeCycle implements Runnable {
     private final Island island;
@@ -19,14 +18,34 @@ public class AnimalLifeCycle implements Runnable {
         for (int x = 0; x < Settings.columnsCount; x++) {
             for (int y = 0; y < Settings.rowsCount; y++) {
                 Location location = island.getLocation(x, y);
-                Iterator<Animal> iterator = location.getAnimals().iterator();
-                while (iterator.hasNext()) {
-                    Animal animal = iterator.next();
-                    animal.decreaseSaturation();
-                    if (animal.getSaturation() <= 0) {
-                        iterator.remove(); // Животное умирает
-//                        System.out.println(animal.getClass().getSimpleName() + " умер от голода в клетке [" + x + "," + y + "]");
-                    }
+                processLifeCycle(location);
+            }
+        }
+    }
+
+    private void processLifeCycle(Location location) {
+        List<Animal> animals = new CopyOnWriteArrayList<>(location.getAnimals()); // ✅ Потокобезопасный список
+
+        for (Animal animal : animals) {
+            animal.decreaseSaturation(); // ✅ Уменьшаем сытость
+
+            if (animal.getSaturation() <= 0) { // ✅ Удаляем, если голоден
+                location.removeAnimal(animal);
+                System.out.println(animal.getClass().getSimpleName() + " умер от голода в клетке [" + location + "]");
+            }
+        }
+
+        reproduceAnimals(location); // ✅ Вызываем размножение
+    }
+
+    private void reproduceAnimals(Location location) {
+        List<Animal> animals = location.getAnimals();
+        for (Animal animal : animals) {
+            if (location.getAnimalCount(animal.getClass()) >= 2) { // ✅ Нужно минимум 2 особи одного вида
+                Animal baby = animal.reproduce();
+                if (baby != null) {
+                    location.addAnimal(baby);
+                    System.out.println(baby.getClass().getSimpleName() + " родился в клетке [" + location + "]");
                 }
             }
         }

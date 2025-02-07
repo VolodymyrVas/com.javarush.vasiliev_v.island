@@ -8,8 +8,23 @@ import settings.Settings;
 import java.util.List;
 import java.util.Random;
 
-public class AnimalEater {
+public class AnimalEater implements Runnable { // ✅ Теперь `Runnable`
+    private final Island island;
     private final Random random = new Random();
+
+    public AnimalEater(Island island) {
+        this.island = island;
+    }
+
+    @Override
+    public void run() {
+        for (int x = 0; x < island.getWidth(); x++) {
+            for (int y = 0; y < island.getHeight(); y++) {
+                Location location = island.getLocation(x, y);
+                processEating(location);
+            }
+        }
+    }
 
     public void processEating(Location location) {
         List<Animal> animals = location.getAnimals();
@@ -32,7 +47,8 @@ public class AnimalEater {
                 if (random.nextInt(100) < chance) {
                     predator.increaseSaturation(prey.getWeight());
                     location.removeAnimal(prey);
-                    break; // Один хищник может съесть только одну жертву за такт
+                    System.out.println(predator.getClass().getSimpleName() + " съел " + prey.getClass().getSimpleName() + " в клетке [" + location + "]");
+                    break; // Один хищник ест одну жертву за такт
                 }
             }
         }
@@ -40,9 +56,9 @@ public class AnimalEater {
 
     private void eatPlants(Animal herbivore, List<Plant> plants) {
         if (!plants.isEmpty()) {
-            herbivore.increaseSaturation(5); // Например, каждая трава восстанавливает 5 единиц сытости
-            plants.remove(0); // Удаляем одно растение
+            herbivore.increaseSaturation(5);
+            plants.remove(0);
+            System.out.println(herbivore.getClass().getSimpleName() + " съел растение в клетке");
         }
     }
 }
-

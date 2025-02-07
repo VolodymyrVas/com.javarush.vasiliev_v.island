@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AnimalMover implements Runnable {
+
     private final Island island;
     private static final Random random = new Random();
 
@@ -16,6 +17,8 @@ public class AnimalMover implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("🔍 AnimalMover выполняется...");
+
         for (int x = 0; x < island.getWidth(); x++) {
             for (int y = 0; y < island.getHeight(); y++) {
                 Location location = island.getLocation(x, y);
